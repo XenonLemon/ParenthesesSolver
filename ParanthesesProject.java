@@ -3,38 +3,63 @@
 //This project is meant to check if a given string has a valid set of brackets.
 
 public class ParanthesesProject{
-    public static void isValid(String s){
-        boolean parenthesesCheck = false;
-        boolean curlyCheck = false;
-        boolean squareCheck = false;
+    public static boolean isValid(String s){
+        
 
         //{({()})}
         
         //({)}
 
-        //for(int i=0; i<s.length(); i++){
-          //  int endCurly = s.indexOf("}");
-            //int startCurly = s.indexOf("{");
-              //  if(startCurly<endCurly){
-                //    curlyCheck = true;         
-                //}
-                
-        //}
         //some kind of other loop
         //index of before, index of after
+        //
 
-        for(int i = s.length(); i>=0; i--){
-            if(s.substring(i).equals("{")){
-                if(s.substring(i+1).equals("}")){
-                    curlyCheck = true;
+        //for loop going through the string s, going from the end to the start of s. The string must only contain (), {}, and/or []
+        //The loop will 
+        while (s.length() > 0){ 
+            System.out.println("here");   
+            for(int i = s.length(); i>=0; i--){
+                if(s.substring(i).equals("{")){
+                    if(s.substring(i+1).equals("}")){
+                        
+                        s = s.substring(0, i) + s.substring(i+2);
+                    }
+                    else{
+                        return false;
+                    }
                 }
-            }
+                if(s.substring(i).equals("[")){
+                    if(s.substring(i+1).equals("]")){
+                        
+                        s = s.substring(0, i) + s.substring(i+2);
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                if(s.substring(i).equals("(")){
+                    if(s.substring(i+1).equals(")")){
+                        
+                        s = s.substring(0, i) + s.substring(i+2);
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                
 
+            }
+            
         }
+        return true;
+
     }
+    
+
+    
 
     public static void main(String[] args){
-        isValid("{{}}");
+        System.out.println(isValid("{{}}"));
     }
 
 
