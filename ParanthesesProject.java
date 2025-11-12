@@ -3,50 +3,49 @@
 //This project is meant to check if a given string has a valid set of brackets.
 
 public class ParanthesesProject{
+    //this method must be given a string that only contains the characters of (), {}, and [].
+    //this method will check if the given string s is valid in terms of a set of brackets.
     public static boolean isValid(String s){
-        
 
-        //{({()})}
-        
-        //({)}
-
-        //some kind of other loop
-        //index of before, index of after
-        //
-
-        //for loop going through the string s, going from the end to the start of s. The string must only contain (), {}, and/or []
-        //The loop will 
         while (s.length() > 0){ 
-            System.out.println("here");   
-            for(int i = s.length(); i>=0; i--){
-                if(s.substring(i).equals("{")){
-                    if(s.substring(i+1).equals("}")){
-                        
-                        s = s.substring(0, i) + s.substring(i+2);
-                    }
-                    else{
-                        return false;
-                    }
+               
+            if(s.length()%2 != 0){
+                    return false;
                 }
-                if(s.substring(i).equals("[")){
-                    if(s.substring(i+1).equals("]")){
+            for(int i = s.length()-1; i>=0; i--){
+                if(s.substring(i, i+1).equals("{")){
+                    if(s.substring(i+1, i+2).equals("}")){
                         
                         s = s.substring(0, i) + s.substring(i+2);
-                    }
-                    else{
-                        return false;
-                    }
-                }
-                if(s.substring(i).equals("(")){
-                    if(s.substring(i+1).equals(")")){
-                        
-                        s = s.substring(0, i) + s.substring(i+2);
+                        i =-1;
                     }
                     else{
                         return false;
                     }
                 }
                 
+                else if(s.substring(i, i+1).equals("[")){
+                    if(s.substring(i+1, i+2).equals("]")){
+                        
+                        s = s.substring(0, i) + s.substring(i+2);
+                        i=-1;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                else if(s.substring(i, i+1).equals("(")){
+
+                   
+                    if(s.substring(i+1, i+2).equals(")")){
+                        s = s.substring(0, i) + s.substring(i+2);
+                        i = -1;
+                    }
+                    else{
+                        return false;
+                    }
+                   
+                }
 
             }
             
@@ -59,7 +58,7 @@ public class ParanthesesProject{
     
 
     public static void main(String[] args){
-        System.out.println(isValid("{{}}"));
+        System.out.println(isValid("([{({})}])"));
     }
 
 
